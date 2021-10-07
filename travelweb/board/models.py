@@ -2,6 +2,10 @@ from django.db import models
 
 
 # 카테고리
+from account.models import AccountInfo
+from travel.models import Schedule
+
+
 class Category(models.Model):
     objects = models.Manager()
     category_name = models.CharField(max_length=20)
