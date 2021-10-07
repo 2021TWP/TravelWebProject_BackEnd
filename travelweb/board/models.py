@@ -3,6 +3,7 @@ from django.db import models
 
 # 카테고리
 class Category(models.Model):
+    objects = models.Manager()
     category_name = models.CharField(max_length=20)
 
     def __str__(self):
@@ -11,6 +12,7 @@ class Category(models.Model):
 
 # 게시글
 class Board(models.Model):
+    objects = models.Manager()
     username = models.ForeignKey(AccountInfo, on_delete=models.CASCADE)
     schedule_id = models.ForeignKey(Schedule, on_delete=models.CASCADE)
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -27,6 +29,7 @@ class Board(models.Model):
 
 # 댓글
 class Comment(models.Model):
+    objects = models.Manager()
     board_id = models.ForeignKey(Board, on_delete=models.CASCADE)
     user_id = models.ForeignKey(AccountInfo, on_delete=models.CASCADE)
     comment_content = models.TextField()
