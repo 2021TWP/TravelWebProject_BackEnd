@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'board',
     'rest_framework',
     'account',
-    'travel',
+    'schedule',
 
 ]
 
