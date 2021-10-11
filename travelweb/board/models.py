@@ -1,7 +1,4 @@
 from django.db import models
-
-
-# 카테고리
 from account.models import AccountInfo
 from travel.models import Schedule
 
@@ -18,14 +15,14 @@ class Category(models.Model):
 class Board(models.Model):
     objects = models.Manager()
     username = models.ForeignKey(AccountInfo, on_delete=models.CASCADE)
-    schedule_id = models.ForeignKey(Schedule, on_delete=models.CASCADE)
+    schedule_id = models.ForeignKey(Schedule, null=True, blank=True, on_delete=models.CASCADE)
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
-    imgUrl = models.TextField()
+    imgUrl = models.TextField(null=True, blank=True)
     title = models.CharField(max_length=50)
     date = models.DateTimeField()
     board_content = models.TextField()
-    hit = models.IntegerField()
-    like = models.IntegerField()
+    hit = models.IntegerField(default=0)
+    like = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
