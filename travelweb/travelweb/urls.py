@@ -18,5 +18,11 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
     path('board/', include('board.urls')),
+=======
+    path('api/travel/', include('schedule.urls')),
+    # py
+    # py
+>>>>>>> 3a42eb962d7e33c2d2850c0c03bb4d91269b3eeb
 ]
