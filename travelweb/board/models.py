@@ -3,7 +3,10 @@ from django.db import models
 
 # 카테고리
 from account.models import AccountInfo
+
+
 from schedule.models import Schedule
+
 
 
 class Category(models.Model):
