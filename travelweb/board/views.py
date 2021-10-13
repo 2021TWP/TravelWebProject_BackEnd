@@ -10,26 +10,26 @@ def category_list(request):
     serializer = CategorySerializer(categories, many=True)
     return Response(serializer.data)
 
-#
-# @api_view(['GET'])
-# def board_free(request):
-#     boards = Board.objects.filter(category_id=1)
-#     serializer = BoardSerializer(boards, many=True)
-#     return Response(serializer.data)
-#
-#
-# @api_view(['GET'])
-# def board_review(request):
-#     boards = Board.objects.filter(category_id=2)
-#     serializer = BoardSerializer(boards, many=True)
-#     return Response(serializer.data)
-#
-#
-# @api_view(['GET'])
-# def board_impromptu(request):
-#     boards = Board.objects.filter(category_id=3)
-#     serializer = BoardSerializer(boards, many=True)
-#     return Response(serializer.data)
+
+@api_view(['GET'])
+def board_free(request):
+    boards = Board.objects.filter(category_id=1)
+    serializer = BoardSerializer(boards, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def board_review(request):
+    boards = Board.objects.filter(category_id=2)
+    serializer = BoardSerializer(boards, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def board_impromptu(request):
+    boards = Board.objects.filter(category_id=3)
+    serializer = BoardSerializer(boards, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
@@ -42,13 +42,13 @@ def board_list(request):
 @api_view(['GET'])
 def board_detail(request, pk):
     board = Board.objects.get(id=pk)
-    serializer = BoardSerializer(board, many=False)
+    serializer = BoardSerializer(board, many=False, context={'request': request})
     return Response(serializer.data)
 
 
 @api_view(['POST'])
 def board_create(request):
-    serializer = BoardSerializer(data=request.data)
+    serializer = BoardSerializer(data=request.data, context={'request': request})
     if serializer.is_valid():
         serializer.save()
         return Response({"message": "Created!"})
@@ -59,7 +59,7 @@ def board_create(request):
 @api_view(['PUT'])
 def board_update(request, pk):
     board = Board.objects.get(id=pk)
-    serializer = BoardSerializer(instance=board, data=request.data)
+    serializer = BoardSerializer(instance=board, data=request.data, context={'request': request})
     if serializer.is_valid():
         serializer.save()
         return Response({"message": "Updated!"})
@@ -77,13 +77,13 @@ def board_delete(request, pk):
 @api_view(['GET'])
 def comment_list(request):
     comments = Comment.objects.all()
-    serializer = CommentSerializer(comments, many=True)
+    serializer = CommentSerializer(comments, many=True, context={'request': request})
     return Response(serializer.data)
 
 
 @api_view(['POST'])
 def comment_create(request):
-    serializer = CommentSerializer(data=request.data)
+    serializer = CommentSerializer(data=request.data, context={'request': request})
     if serializer.is_valid():
         serializer.save()
         return Response({"message": "Created!"})
@@ -94,7 +94,7 @@ def comment_create(request):
 @api_view(['PUT'])
 def comment_update(request, pk):
     comment = Comment.objects.get(id=pk)
-    serializer = CommentSerializer(instance=comment, data=request.data)
+    serializer = CommentSerializer(instance=comment, data=request.data, context={'request': request})
     if serializer.is_valid():
         serializer.save()
         return Response({"message": "Updated!"})

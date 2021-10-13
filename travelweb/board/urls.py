@@ -4,9 +4,9 @@ from board import views
 urlpatterns = [
     path('category/', views.category_list, name='category_list'),
     path('', views.board_list, name='board_list'),
-    # path('free/', views.board_free, name='board_free'),
-    # path('review/', views.board_review, name='board_review'),
-    # path('impromptu/', views.board_impromptu, name='board_impromptu'),
+    path('free/', views.board_free, name='board_free'),
+    path('review/', views.board_review, name='board_review'),
+    path('impromptu/', views.board_impromptu, name='board_impromptu'),
 
     path('<int:pk>/', views.board_detail, name='board_detail'),
     path('create/', views.board_create, name='board_create'),
