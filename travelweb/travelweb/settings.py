@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'board',
     'rest_framework',
     'account',
-    'travel',
+    'schedule',
 
 ]
 
@@ -79,17 +79,23 @@ WSGI_APPLICATION = 'travelweb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'travel',
+#         'USER': 'root',
+#         'PASSWORD': '1234',
+#         'HOST': '184.169.172.41',
+#         'PORT': '3306',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'travel',
-        'USER': 'root',
-        'PASSWORD': '1234',
-        'HOST': '184.169.172.41',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password dvalidation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
